@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="icon" href="https://uifresh.net/wp-content/uploads/2024/02/cropped-uifresh-favicon-new-1-32x32.png" sizes="32x32">
+  <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <script src="https://smtpjs.com/v3/smtp.js">
+	</script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <style>
+@import url('https://fonts.googleapis.com/css?family=Lato:300');
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  --d:22px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  color: #25b09b;
+  box-shadow: 
+    calc(1*var(--d))      calc(0*var(--d))     0 0,
+    calc(0.707*var(--d))  calc(0.707*var(--d)) 0 1px,
+    calc(0*var(--d))      calc(1*var(--d))     0 2px,
+    calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+    calc(-1*var(--d))     calc(0*var(--d))     0 4px,
+    calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+    calc(0*var(--d))      calc(-1*var(--d))    0 6px;
+  animation: l27 1s infinite steps(8);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,50%);
+  position: absolute;
+}
+
+
+:root{
+  --index:calc( 1vw + 1vh);
+  --transition:cubic-bezier(0.1,0.7,0,1);
+--light: #CDF6FA;
+--bg_1: #111E25;
+--bg_2: #111111;
+--bg: hsl(223, 10%, 30%);
+--fg: hsl(223, 10%, 90%);
+--fg-t: hsla(223, 10%, 90%, 0.5);
+--primary1: hsl(223, 90%, 55%);
+--primary2: hsl(223, 90%, 65%);
+--trans-dur: 0.3s;
+font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320px));
+}
+body{
+  background: url('https://blackwallpaperhd.com/wp-content/uploads/2022/10/red19-576x1024.jpg');
+  height: 100vh;
+  margin: 0;
+  color: white;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/*Navigation barr*/
+
+.navbar {
+  width: 100%;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  top: -7%;
+  position: fixed;
+  z-index: 2;
+  left: 0.1%;
+}
+
+.navbar-link {
+  width: 10rem;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(25px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-radius 0.2s;
+}
+
+.navbar-link:first-child {
+  pointer-events: none;
+  border-radius: 0.5rem 0 0 0.5rem;
+  background: transparent;
+}
+
+.navbar-link:last-child {
+  pointer-events: none;
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: transparent;
+}
+
+.change.navbar-link {
+  background: transparent;
+}
+
+.navbar-link.prevElChange {
+  border-top-right-radius: 1.5rem;
+  transition: border-radius 1s;
+}
+
+.navbar-link.nextElChange {
+  border-top-left-radius: 1.5rem;
+  transition: border-radius 1s;
+}
+
+.navbar-link::before {
+  content: "";
+  width: 10.4rem;
+  height: 7.5rem;
+  background-color: white;
+  position: absolute;
+  top: -100%;
+  left: -0.2rem;
+  border-radius: 0 0 5rem 5rem;
+  transition: top 0.4s, background-color 0.4s 0.4s;
+}
+
+.change.navbar-link::before {
+  top: -30%;
+  transition: top 0.5s;
+}
+
+.navbar-link i {
+  font-size: 2.5rem;
+  color: #333;
+  transition: color 0.4s, font-size 0.4s;
+}
+
+.change.navbar-link i {
+  color: #fff;
+  font-size: 3.5rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .navbar {
+      height: 8rem; 
+      width: 100%;
+      right: 5%;
+  }
+
+  .navbar-link {
+      width: 3rem; 
+  }
+
+  .navbar-link i {
+      font-size: 1.8rem; 
+  }
+
+  .change.navbar-link i {
+      font-size: 2rem; 
+  }
+
+  .navbar-link::before {
+      height: 6rem; 
+      width: 3rem;
+  }
+  .img{
+    max-width: 11rem;
+    margin-left: 5%;
+  }
+  .detail{
+    right: 6%;
+    max-width: 23rem;
+  }
+
+  .buttons{
+    max-width: 9rem;
+  }
+  .img2{
+    max-width: 15rem;
+    margin-left: 15%;
+  }
+  .imgfinal{
+    margin-left: -16%;
+  }
+  .skills{
+    margin-top: 15px;
+  }
+  .img1{
+    max-width: 325px;
+    max-height: 200px;
+  }
+  .project{
+    margin: -20px;
+  }
+  .item.open {
+    min-width: 17vh;
+    max-height: 19vh;
+  }
+  .wrapper{
+    max-height: 30vh;
+  }
+  .uf-contact-form-03::before{
+    min-width: 100%;
+    min-height: 100%;
+  }
+  
+}
+
+/*Home pg secton*/
+.home{
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+height: 100vh;
+width: 100%;
+height: 100%;
+}
+.home .container-fluid{
+max-width: 100%;
+}
+.home .row{
+width: 100%;
+}
+.img{
+width: 12rem; 
+left: 20%;
+background: transparent;
+}
+.img2{
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+background-position: center;
+animation: slider 15s linear infinite;
+width: 19.5rem;
+border-radius: 50%;
+box-shadow: 10px 10px 80px 7px black;
+}
+.imgfinal{
+margin-top: 15%;
+filter: grayscale(80%);
+}
+.imgfinal:hover{
+filter: grayscale(0%);
+cursor: pointer;
+}
+@keyframes slider{
+0%{background-image: url('https://64.media.tumblr.com/32b0e570c76702e214ff4f5197ccc2dc/tumblr_piljaaHexq1twd8ddo1_500.gif');}
+35%{background: url('https://64.media.tumblr.com/32b0e570c76702e214ff4f5197ccc2dc/tumblr_piljaaHexq1twd8ddo1_500.gif');}
+65%{background: url('https://64.media.tumblr.com/32b0e570c76702e214ff4f5197ccc2dc/tumblr_piljaaHexq1twd8ddo1_500.gif');}
+100%{background: url('https://64.media.tumblr.com/32b0e570c76702e214ff4f5197ccc2dc/tumblr_piljaaHexq1twd8ddo1_500.gif');}
+}
+.detail{
+background: transparent;
+backdrop-filter: blur(50px);
+border: 1px solid black;
+color: white;
+width: 40rem;
+box-shadow: 4px 4px 10px darkred;
+}
+.detail2{
+font-size: 19px;
+font-weight: bold;
+}
+
+/*buton part*/
+
+:root {
+--offset-color: grey;
+--offset-hover: darkslategrey 
+}
+a {
+color: var(--offset-color);
+transition: 1s;
+}
+a:hover,
+a:focus {
+border-color: var(--offset-hover);
+color: white;
+}
+.offset {
+box-shadow: 
+  0.3em 0.3em 0 0 var(--offset-color),
+  inset 0.3em 0.3em 0 0 var(--offset-color);
+  height: 3.2rem;
+  display: grid;
+  place-content: center;
+  color: white;
+  font-weight: bolder;
+  border-radius: 40%;
+}
+.offset:hover,
+.offset:focus {
+box-shadow: 
+  0 0 0 0 var(--offset-hover),
+  inset 6em 3.5em 0 0 var(--offset-hover);
+}
+.buttons{
+width: 11rem;
+}
+/*Skills secton*/
+.skills{
+font-size: 100px;
+}
+
+.skillselements div i:hover{
+border: 4px solid dimgray;
+border-radius: 14%;
+transition: all .3s ;
+}
+.skills div{
+margin-top: 30px;
+}
+.icon {
+display: grid;
+animation: updown 3s ease-in-out infinite;
+}
+@keyframes updown {
+0%,100%{
+  transform: translateX(0);
+}
+50%{
+  transform: translateX(-15px);
+}
+}
+/*hover wala part*/
+.sql:hover{
+  color: rgb(47, 47, 167);
+}
+.canva:hover{
+  background: transparent;
+  font-size: 100px;
+  background-image: url("https://static.vecteezy.com/system/resources/previews/006/521/342/non_2x/free-beautiful-colorful-future-backgrounds-for-graphic-design-needs-web-banner-wallpaper-poster-free-photo.jpg");
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-position: center;
+  }
+.bootstrap:hover{
+  color: rgb(105, 33, 173);
+}
+.eclipse:hover{
+color: navy;
+}
+.html5:hover{
+  color: #e34c26;
+}
+.css:hover{
+  color: #264de4;
+}
+.js:hover,.py:hover{
+  color: yellow;
+}
+.rjs:hover{
+color: skyblue;
+}
+.java:hover{
+  color: darkred;
+}
+.cpp:hover{
+  color: darkblue;
+}
+.php:hover{
+  color: #787CB5;
+}
+
+/*project and ideas wala section*/
+.img1{
+  width: 400px;
+  height: 350px;
+  aspect-ratio: 1 / 0.7;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  right: -20px;
+  
+}
+.img1 .imgbox{
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  
+}
+.img1 .imgbox img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 90%;
+  border-radius: inherit;
+  transition: 0.5s ease-in-out;
+}
+.img1::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid white;
+  border-radius: inherit;
+  opacity: 0;
+  transition: 0.4s ease-in-out;
+}
+.img1:hover img{
+  filter: grayscale(1)
+  brightness(0.4);
+}
+.img1:hover::after{
+  opacity: 1;
+  inset: 20px;
+}
+.content1{
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+.content1 h2
+.content1 p{
+  opacity: 0;
+  transition: 0.4s 0.2s ease;
+}
+.content1 h2{
+  margin-bottom: 12px;
+  scale: 0.7;
+  opacity: 0;
+}
+.content1 p{
+  font-size: 14px;
+  line-height: 1.5;
+  transform: translateY(50%);
+  opacity: 0;
+}
+
+.project a{
+  opacity: 0;
+  color: white;
+}
+.project:hover a{
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-size: 26px;
+}
+.img1:hover .content1 h2{
+  scale: 1;
+  opacity: 1;
+}
+.img1:hover .content1 p{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projecthorscrollbar{
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+.projecthorscrollbar .row{
+  display: inline-block;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+.project{
+  margin: -20px;
+}
+.projecthorscrollbar .project{
+  display: inline-block;
+  font: none;
+  vertical-align: top;
+}
+
+/*socila media wala pg*/
+
+.icons{
+  display: inline-flex;
+}
+.icons a{
+  margin: 20px 15px;
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  position: relative;
+}
+.icons a .layer{
+  width: 55px;
+  height: 55px;
+  transition: transform 0.5s;
+}
+.icons a:hover .layer{
+  transform: rotate(-35deg) skew(20deg);
+}
+
+.icons a .layer span{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.icons a .layer span.fab{
+  font-size: 30px;
+  line-height: 55px;
+  color: inherit;
+}
+.icons a:hover .layer span:nth-child(1){
+  opacity: 0.2;
+}
+.icons a:hover .layer span:nth-child(2){
+  opacity: 0.4;
+  transform: translate(5px, -5px);
+}
+.icons a:hover .layer span:nth-child(3){
+  opacity: 0.6;
+  transform: translate(10px, -10px);
+}
+.icons a:hover .layer span:nth-child(4){
+  opacity: 0.8;
+  transform: translate(15px, -15px);
+}
+.icons a:hover .layer span:nth-child(5){
+  opacity: 1.0;
+  transform: translate(20px, -20px);
+}
+
+.icons .col-4:nth-child(1) a .layer span,
+.icons .col-4:nth-child(1) a .text {
+  color: #0077B5;
+  border-color: #0077B5;
+}
+
+.icons .col-4:nth-child(2) a .layer span,
+.icons .col-4:nth-child(2) a .text {
+  color: #1DA1F2;
+  border-color: #1DA1F2;
+}
+
+.icons .col-4:nth-child(3) a .layer span,
+.icons .col-4:nth-child(3) a .text {
+  color: #e1306c;
+  border-color: #e1306c;
+}
+
+.icons .col-4.github a .layer span.fab.fa-github {
+  color: #333333;
+  border-color: #333333;
+}
+.icons .col-4.snapchat a .layer span.fab.fa-snapchat {
+  color: #FFFC00;
+  border-color: #FFFC00;
+}
+
+.icons .col-4.youtube a .layer span.fab.fa-youtube {
+  color: darkred;
+  border-color: darkred;
+}
+
+.icons a .text{
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  transition: bottom 0.3s ease,opacity 0.3s ease;
+  opacity: 0;
+}
+.icons a:hover .text{
+  bottom: -35px;
+  opacity: 1;
+}
+
+/*Pictures wala section*/
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+.items{
+  display: flex;
+  gap: 0.3rem;
+  perspective: calc(var(--index)*35);
+  position: relative;
+}
+.item{
+  width: calc(var(--index)*3);
+  height: calc(var(--index)*12);
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  filter: grayscale(1) brightness(.5);
+  transition: transform 1.25s
+              var(--transition),
+              filter 3s var(--transition),
+              width 1.25s var(--transition);
+  will-change: transform,filter,rotateY,width;
+  position: relative;
+  z-index: 1;
+}
+
+.item.open {
+  width: 15vw;
+  height: 37vh;
+  transform: translateZ(0);
+  filter: grayscale(0) brightness(1);
+  z-index: 1000;
+}
+
+.items .item.open + * {
+  transform: scale(0.5);
+  opacity: 0.5;
+}
+
+.item::before,
+.item::after{
+  content: '';
+  height: 100%;
+  width: 20px;
+  right: calc(var(--index)*-1);
+}
+.item::after{
+  left: calc(var(--index)*-1);
+}
+.items .item:hover{
+  filter: inherit;
+  transform: translateZ(calc(var(--index)*10));
+  z-index: 2;
+}
+.items .item:hover + *{
+  filter: inherit;
+  transform: translateZ(calc(var(--index)*8.5)) rotateY(35deg);
+  z-index: -1;
+}
+.items .item:hover + * + *{
+  filter: inherit;
+  transform: translateZ(calc(var(--index)*5.6)) rotateY(40deg);
+  z-index: -2;
+}
+.items .item:hover + * + * + *{
+  filter: inherit;
+  transform: translateZ(calc(var(--index)*2.5)) rotateY(30deg);
+  z-index: -3;
+}
+.items .item:hover + * + * + * + *{
+  filter: inherit;
+  transform: translateZ(calc(var(--index)*0.6)) rotateY(15deg);
+  z-index: -4;
+}
+
+.items .item:has(+ :hover){
+  filter: inherit;
+  transform: translateZ(calc(var(--index)*8.5)) rotateY(-35deg);
+}
+.items .item:has(+ * +:hover){
+  filter: inherit;
+  transform: translateZ(calc(var(--index)*5.6)) rotateY(-40deg);
+}
+.items .item:has(+ * + * +:hover){
+  filter: inherit;
+  transform: translateZ(calc(var(--index)*2.5)) rotateY(-30deg);
+}
+.items .item:has(+ * + * + * +:hover){
+  filter: inherit;
+  transform: translateZ(calc(var(--index)*0.6)) rotateY(-15deg);
+}
+
+.items .item:active,
+.items .item:focus{
+  width: 20vw;
+  filter: inherit;
+  z-index: 100;
+  transform: translateZ(calc(var(--index)*10));
+  margin: 0.45vw;
+}
+
+/*feeback wala section*/
+
+.feedback {
+  color: #fff;
+}
+.feedback{
+  background-color: rgba(0,0,0, 0.4);
+}
+
+@media (min-width: 576px) {
+  .uf-contact-form-03 {
+      min-height: 100vh;
+      align-content: center;
+  }
+}
+.uf-contact-form-03{
+  position: relative;
+}
+
+.uf-cf-03-main {
+  max-width: 450px;
+}
+
+.uf-ct-03-img {
+  max-width: 350px;
+  width: 100%;
+}
+
+.uf-contact-form-03-body {
+  position: relative;
+}
+
+.uf-ct-03-text-primary {
+  color: goldenrod;
+}
+
+.uf-ct-03-bg-primary {
+  background-color: red;
+}
+
+.uf-ct-03-btn-primary {
+  background-color: transparent;
+  color: #fff;
+  font-weight: bolder;
+}
+
+.uf-ct-03-btn-primary:hover {
+  background-color: gray;
+  color: #fff;
+  border-radius: 35%;
+  transition: all .4s;
+}
+
+.uf-ct-03-input-group-text {
+  min-width: 44px;
+}
+
+.form-control {
+  padding: 0.75rem;
+}
+
+.form-control:focus {
+  border-color: #99cf25;
+  box-shadow: unset;
+  background-color: #efefef;
+}
+/*extra editing*/
+.neonshadow{
+  color: white;
+  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red, 0 0 80px red;
+}
+
+.pl {
+  box-shadow: 2em 0 2em hsla(0, 0%, 0%, 0.2) inset, -2em 0 2em hsla(0, 0%, 100%, 0.1) inset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transform: rotateX(30deg) rotateZ(45deg);
+  width: 15em;
+  height: 15em;
+}
+
+.pl__dot {
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  top: calc(50% - 0.75em);
+  left: calc(50% - 0.75em);
+  animation-name: shadow;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  box-shadow: 0.1em 0.1em 0 0.1em hsl(0, 0%, 0%), 0.3em 0 0.3em hsla(0, 0%, 0%, 0.5);
+}
+
+.pl__dot:before,
+.pl__dot:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  width: inherit;
+  transition: background-color var(--trans-dur);
+}
+
+.pl__dot:before {
+  animation-name: pushInOut1;
+  background-color: var(--bg);
+  height: inherit;
+  z-index: 1;
+  box-shadow: 0.05em 0 0.1em hsla(0, 0%, 100%, 0.2) inset;
+  border-radius: inherit;
+}
+
+.pl__dot:after {
+  animation-name: pushInOut2;
+  background-color: var(--primary1);
+  height: 3em;
+  transform: rotate(-45deg);
+  transform-origin: 50% 2.25em;
+  clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%);
+  box-shadow: 0.1em 0.3em 0.2em hsla(0, 0%, 100%, 0.4) inset, 0 (-0.4em) 0.2em hsl(223, 10%, 20%) inset, 0 (-1em) 0.25em hsla(0, 0%, 0%, 0.3) inset;
+}
+
+.pl__text {
+  font-size: 0.75em;
+  max-width: 5rem;
+  position: relative;
+  text-shadow: 0 0 0.1em var(--fg-t);
+  transform: rotateZ(-45deg);
+}
+
+/* Animations */
+@keyframes shadow {
+  from {
+    animation-timing-function: ease-in;
+    box-shadow: 0.1em 0.1em 0 0.1em hsl(0, 0%, 0%), 0.3em 0 0.3em hsla(0, 0%, 0%, 0.3);
+  }
+  25% {
+    animation-timing-function: ease-out;
+    box-shadow: 0.1em 0.1em 0 0.1em hsl(0, 0%, 0%), 0.8em 0 0.8em hsla(0, 0%, 0%, 0.5);
+  }
+  50%,
+  to {
+    box-shadow: 0.1em 0.1em 0 0.1em hsl(0, 0%, 0%), 0.3em 0 0.3em hsla(0, 0%, 0%, 0.3);
+  }
+}
+
+@keyframes pushInOut1 {
+  from {
+    animation-timing-function: ease-in;
+    background-color: var(--bg);
+    transform: translate(0, 0);
+  }
+  25% {
+    animation-timing-function: ease-out;
+    background-color: var(--primary2);
+    transform: translate(-71%, -71%);
+  }
+  50%,
+  to {
+    background-color: var(--bg);
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes pushInOut2 {
+  from {
+    animation-timing-function: ease-in;
+    background-color: var(--bg);
+    clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%);
+  }
+  25% {
+    animation-timing-function: ease-out;
+    background-color: var(--primary1);
+    clip-path: polygon(0 25%, 100% 25%, 100% 100%, 0 100%);
+  }
+  50%,
+  to {
+    background-color: var(--bg);
+    clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%);
+  }
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  word-wrap: break-word;
+}
+.backToTopBtn{
+  position: fixed;
+  bottom: 25px;
+  right: 15px;
+  z-index: 1;
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  border: none;
+  color: black;
+  border-radius: 100%;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.backToTopBtn.active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.backToTopBtn:not(.active) {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader"></div>
+    <nav class="navbar neonshadow" style="position: fixed;">
+        <div class="navbar-link prevElChange" style="display: none;"></div>
+        <a href="#home" class="navbar-link change"><i class="fas fa-home"></i></a>
+        <a href="#skills" class="navbar-link nextElChange"><i class="fas fa-laptop-code"></i></a>
+        <a href="#projects" class="navbar-link"><i class="fas fa-tasks"></i></a>
+        <a href="#socialmedia" class="navbar-link"><i class="fas fa-user"></i></a>
+        <a href="#pictures" class="navbar-link"><i class="fas fa-image"></i></a>
+        <a href="#feedback" class="navbar-link"><i class="fas fa-comment"></i></a>
+        <div class="navbar-link" style="display: none;"></div>
+      </nav>
+      <section class="home mt-5" id="home">
+        <div class="container-fluid" data-aos="fade-right">
+          <div class="container backbg">
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <div class="img2">
+            <div class="card img">
+              <img src="tabish-2.1.jpg" class="card-img-top rounded-circle imgfinal" alt="">
+              <div class="card-body">
+                <p class="card-text" style="color: white;"></p>
+              </div></div>
+            </div> <!--end image-->
+          </div>
+          <div class="col-12 col-lg-6 mt-lg-5 mt-4">
+            <div class="card detail text-start">
+              <div class="card-body text-center">
+                <h1 class="card-title title neonshadow"><strong><u>Muhammad Tabish</u></strong></h1>
+                <p class="card-text detail2">Styles come and Go.<br>Good design is a Language not a Style<br><br>Let's Connect!</p>
+                <div class="row justify-content-center">
+                <div class="col-6 btn1 buttons">
+                  <a href="https://mdtabish24.github.io/Resume/Mohammad Tabish Resume.pdf" target="_blank" class="btn w-100 offset">Resume</a>
+                </div>
+                <div class="col-6 btn2 buttons">
+                  <a href="https://mohammadtabish.my.canva.site/" target="_blank" class="btn w-100 offset">ReadMe</a>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+      </section>
+      <!--Skills wala part-->
+      <section class="skills" id="skills">
+        <div class="container-fluid"  data-aos="fade-right">
+          <div class="container text-center skillselements">
+            <h1 class="neonshadow">Technologies</h1>
+            <div class="row neonshadow2">
+              <div class="col-6 col-lg-3 icon">
+            <i class="devicon-azuresqldatabase-plain sql"></i>
+              </div>
+              <div class="col-6 col-lg-3 icon"> 
+                <i class="devicon-canva-original canva"></i>
+              </div>
+          <div class="col-6 col-lg-3 icon">  
+            <i class="devicon-bootstrap-plain-wordmark bootstrap"></i>
+          </div>
+          <div class="col-6 col-lg-3 icon">  
+            <i class="devicon-eclipse-plain eclipse"></i>
+          </div>
+        </div>
+        <div class="row neonshadow2">
+          <div class="col-6 col-lg-3 icon">  
+            <i class="devicon-html5-plain-wordmark html5"></i>
+          </div>
+          <div class="col-6 col-lg-3 icon">  
+            <i class="devicon-css3-plain-wordmark css"></i>
+          </div>
+      <div class="col-6 col-lg-3 icon">  
+        <i class="devicon-javascript-plain js"></i>
+      </div>
+      <div class="col-6 col-lg-3 icon">  
+        <i class="devicon-react-original-wordmark rjs"></i>
+      </div>
+    </div>
+    <div class="row neonshadow2">
+      <div class="col-6 col-lg-3 icon">  
+        <i class="devicon-java-plain-wordmark java"></i>
+      </div>
+      <div class="col-6 col-lg-3 icon">  
+        <i class="devicon-cplusplus-plain cpp"></i>
+      </div>
+  <div class="col-6 col-lg-3 icon">
+    <i class="devicon-python-plain-wordmark py"></i>
+  </div>
+  <div class="col-6 col-lg-3 icon php">  
+    <i class="devicon-php-plain"></i>
+  </div>
+</div>
+      </div>
+        </div>
+      </section>
+      <!--Project wala part-->
+      <section id="projects" class="projects mt-5 text-center"  data-aos="fade-right">
+        <h1 class="neonshadow">Projects and Designs</h1><br>
+        <div class="container-fluid text-center">
+          <div class="container projecthorscrollbar">
+            <div class="row">
+              <div class="col-3 col-lg-4 project">
+                <div class="img1">
+                  <div class="imgbox">
+                      <img src="./images/weatherforecast.png">
+                  </div>
+                  <div class="content1">
+                    <h2>Weather ForeCast</h2>
+                    <p>A web Application which gives real time<br> weather condition of every place</p>
+                  </div>
+                </div>
+                <a href="https://mdtabish24.github.io/CODTECHInternshipTask2/WeatherForecast.html" target="_blank" class="btn">Visit</a>
+              </div>
+              <div class="col-3 col-lg-4 project">
+                <div class="img1">
+                  <div class="imgbox">
+                      <img src="./images/todolist.png">
+                  </div>
+                  <div class="content1">
+                    <h2>TO-DO List</h2>
+                    <p>A web Application helps you to track your<br> daily life tasks</p>
+                  </div>
+                </div>
+                <a href="https://mdtabish24.github.io/CODTECHInternshipTask1/TODOlist.html" target="_blank" class="btn">Visit</a>
+              </div>
+              <div class="col-3 col-lg-4 project">
+                <div class="img1">
+                  <div class="imgbox">
+                      <img src="./images/DSAimage.png">
+                  </div>
+                  <div class="content1">
+                    <h2>Technical<br>Documentation</h2>
+                    <p>A Short document on Learning DSA<br> with Refernces</p>
+                  </div>
+                </div>
+                <a href="https://mdtabish24.github.io/DSA_TechnicalDocument/Technical_Documentation.html" target="_blank" class="btn">Visit</a>
+              </div>
+              <div class="col-3 col-lg-4 project">
+                <div class="img1">
+                  <div class="imgbox">
+                      <img src="./images/firstwebthumbnail.png">
+                  </div>
+                  <div class="content1">
+                    <h2>First Website</h2>
+                    <p>My first website I made using<br> html5,css,javascript</p>
+                  </div>
+                </div>
+                <a href="https://mdtabish24.github.io/Tabish-/Index.html.html" target="_blank" class="btn">Visit</a>
+              </div>
+              <div class="col-3 col-lg-1 project">
+                <div class="img1">
+                  <div class="imgbox">
+                      <img src="./images/rockpaperscissor.jpg">
+                  </div>
+                  <div class="content1">
+                    <h2>Rock Paper Scissor</h2>
+                    <p>A game we all had played in our childhood</p>
+                  </div>
+                </div>
+                <a href="https://mdtabish24.github.io/Games/RockPpaerScissor.html" target="_blank" class="btn">Visit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="socialmedia">
+        <div class="container-fluid text-center"  data-aos="fade-right">
+          <h1 style="margin-top: 55px;" class="neonshadow">Social Media</h1>
+          <div class="container">
+            <div class="icons">
+            <div class="row">
+              <div class="col-4">
+                  <a href="https://linkedin.com/in/tabish-ansari-1a7a1928a" target="_blank">
+                    <div class="layer">
+                      <span>
+                    </span>
+                    <span>
+                    </span>
+                    <span>
+                    </span>
+                    <span class="fab fa-linkedin">
+                    </span>
+                  </div>
+                  <div class="text">LinkedIn</div>
+                  </a></div>
+                  <div class="col-4">
+                  <a href="https://x.com/Ansari_MdTabish?t=ecwWjo52cEZ3WfQwcgzWSQ&s=09" target="_blank">
+                    <div class="layer">
+                      <span>
+                    </span>
+                    <span>
+                    </span>
+                    <span>
+                    </span>
+                    <span class="fab fa-twitter">
+                    </span>
+                  </div>
+                  <div class="text">Twitter</div>
+                  </a></div>
+                  <div class="col-4">
+                  <a href="https://www.instagram.com/md.tabish_ansari/?igsh=MWh6cnI2eGNpYXVpeA%3D%3D#" target="_blank">
+                    <div class="layer">
+                      <span>
+                    </span>
+                    <span>
+                    </span>
+                    <span>
+                    </span>
+                    <span class="fab fa-instagram">
+                    </span>
+                  </div>
+                  <div class="text">Instagram</div>
+                  </a></div>
+                </div>
+              </div> 
+            </div>
+            <div class="icons">
+              <div class="row">
+                <div class="col-4 github">
+                    <a href="https://github.com/MdTabish24" target="_blank">
+                      <div class="layer">
+                        <span>
+                      </span>
+                      <span>
+                      </span>
+                      <span>
+                      </span>
+                      <span class="fab fa-github">
+                      </span>
+                    </div>
+                    <div class="text" style="color: #333333;">GitHub</div>
+                    </a></div>
+                    <div class="col-4 snapchat">
+                    <a href="https://www.snapchat.com/add/md.tabishansari?share_id=NtY5xewfm1E&locale=en-IN" target="_blank">
+                      <div class="layer">
+                        <span>
+                      </span>
+                      <span>
+                      </span>
+                      <span>
+                      </span>
+                      <span class="fab fa-snapchat">
+                      </span>
+                    </div>
+                    <div class="text" style="color: yellow;">SnapChat</div>
+                    </a></div>
+                    <div class="col-4 youtube">
+                    <a href="https://www.youtube.com/@fizakhan8339" target="_blank">
+                      <div class="layer">
+                        <span>
+                      </span>
+                      <span>
+                      </span>
+                      <span>
+                      </span>
+                      <span class="fab fa-youtube">
+                      </span>
+                    </div>
+                    <div class="text" style="color: darkred;">YouTube</div>
+                    </a></div>
+                  </div>
+                </div>
+          </div>
+      </section>
+      <!--Pictures wala part-->
+      <section id="pictures">
+        <div class="container-fluid text-center"  data-aos="fade-right">
+          <div class="container">
+            <div class="row">
+              <h1 style="margin-top: 60px;" class="neonshadow">Pictures</h1>
+              <div class="wrapper">
+                <div class="items">
+                  <div class="item" style="background-image: url(images/pic1.jpg);"></div>
+                  <div class="item" style="background-image: url(images/pic2.jpg);"></div>
+                  <div class="item" style="background-image: url(images/pic3.jpg);"></div>
+                  <div class="item" style="background-image: url(images/pic4.jpg);"></div>
+                  <div class="item" style="background-image: url(images/pic5.jpg);"></div>
+                  <div class="item" style="background-image: url(images/pic6.jpg);"></div>
+                  <div class="item" style="background-image: url(images/pic7.jpg);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="uf-contact-form-03" id="feedback">
+        <div class="container text-center"  data-aos="fade-right">
+            <div class="row justify-content-center align-items-center my-4">
+                <div class="col">
+                    <div class="uf-ct-03-header">
+                        <img src="/images/bannerLinkedTwitter.png" alt="" class="uf-ct-03-img bannerimg">
+                    </div>
+                    <div class="uf-cf-03-main py-5 px-lg-5 px-md-4 px-3 mx-auto rounded-4 feedback">
+                        <h2 class="text-uppercase fw-bold neonshadow">Contact Us</h2>
+                        <p>Or reach out manually to <a href="mailto:webmailsoftabish@gmail.com" class="text-decoration-none uf-ct-03-text-primary"><br>Tabish Ansari</a></p>
+                        <form class="finalfeedback" id="contact-form" action="">
+                            <div class="input-group mb-3">
+                                <i class="fa-regular fas fa-user input-group-text uf-ct-03-input-group-text lh-lg"></i>
+                                <input type="text" class="form-control" placeholder="Your name" id="uf-iname">
+                            </div>
+                            <div class="input-group mb-3">
+                                <i class="fa-regular fas fa-paper-plane input-group-text uf-ct-03-input-group-text lh-lg"></i>
+                                <input type="email" class="form-control" placeholder="Email address" id="uf-imail">
+                            </div>
+                            <div class="input-group mb-3">
+                                <i class="fa-regular fas fa-envelope input-group-text uf-ct-03-input-group-text lh-lg"></i>
+                                <textarea class="form-control" placeholder="Your message" id="uf-itextarea" rows="3"></textarea>
+                            </div>
+                            <input type="button" value="Send Message" onclick="send()" class="btn btn-lg uf-ct-03-btn-primary text-uppercase w-100 offset neonshadow">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <button class="backToTopBtn"><a href="#"><div class="neonshadow" style="font-size: 35px; color: white; font-weight: bolder; background: url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWV1dDMycDdzcmRrMzN5c294OW93ZjNsejJtbzI5aWpiY2t6OXY4ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uVsqKcva1AEdViMrA5/giphy.webp); background-position: center; background-size: cover; border-radius: 40%;">⇑</div></a></button>
+
+    <script src="https://kit.fontawesome.com/80bacdb160.js" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script>
+        const links = document.querySelectorAll(".navbar-link");
+links.forEach((link) => {
+  link.addEventListener("click", () => {
+    links.forEach((link) => {
+      link.className = "navbar-link";
+    });
+    link.classList.add("change");
+    link.previousElementSibling.classList.add("prevElChange");
+    link.nextElementSibling.classList.add("nextElChange");
+  });
+});
+const items = document.querySelectorAll('.item');
+items.forEach(item => {
+  item.addEventListener('click', function() {
+    item.classList.toggle('open');
+  });
+});
+feather.replace();
+    </script>
+    <script>
+      var loader = document.getElementById("loader");
+      window.addEventListener("load",function(){
+        loader.style.display = "none";
+      })
+const backToTopButton = document.querySelector('.backToTopBtn');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 200) { 
+    backToTopButton.classList.add('active');
+  } else {
+    backToTopButton.classList.remove('active');
+  }
+});
+backToTopButton.addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+    </script>
+<script>
+function send(){
+    var name = document.getElementById("uf-iname").value;
+    var gmail = document.getElementById("uf-imail").value;
+    var message = document.getElementById("uf-itextarea").value;
+    var bd = "Name: "+ name + "<br/>Gmail: " + gmail + "<br/>Message: " + message;
+    console.log(bd);
+    if(name=="" || gmail=="" || message==""){
+      swal("Error!", "Something went Wrong!", "error");
+      return;
+    }
+    Email.send({
+        SecureToken : "5ac10143-b1e6-49e8-a420-480a077b867f",
+        To : 'webmailsoftabish@gmail.com',
+        From : "webmailsoftabish@gmail.com",
+        Subject : "This is the subject",
+        Body : bd
+    }).then(
+      message => {
+        if(message=='OK'){
+            swal("Submitted!", "You Feedback Submitted Successfully", "success");
+        }
+        else{
+            swal("Error!", "Something went Wrong!", "error");
+        }
+      }
+    );
+}
+document.addEventListener('contextmenu', event => event.preventDefault());
+		document.addEventListener('keydown', (event) => {
+		  if (event.ctrlKey && (event.key === 'u' || event.key === 's' || event.key === 'a' || event.key === 'c')) {
+			event.preventDefault();
+		  }
+		});
+</script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    offset: 180,
+    duration: 1000
+  });
+</script>
+</body>
+</html>
